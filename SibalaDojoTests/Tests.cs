@@ -60,6 +60,12 @@ namespace SibalaDojoTests
             ResultShouldBe("Tie.", "amy:6 6 6 6  lin:6 6 6 6");
         }
 
+        [Test]
+        public void all_the_same_kind_and_no_point()
+        {
+            ResultShouldBe("amy wins. All the same kind: 6", "amy:6 6 6 6  lin:1 2 3 4");
+        }
+
         private void ResultShouldBe(string expected, string input)
         {
             Assert.AreEqual(expected, _sibala.Result(input));
