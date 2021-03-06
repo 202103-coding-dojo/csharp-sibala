@@ -72,6 +72,7 @@ namespace SibalaDojoTests
         {
             ResultShouldBe("lin wins. all the same kind:2.", "amy:6 6 6 3  lin:2 2 2 2");
         }
+        
         [Test]
         public void all_the_same_kind_and_no_point_secondPlayer_win()
         {
