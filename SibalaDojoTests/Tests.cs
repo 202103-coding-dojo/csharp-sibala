@@ -1,5 +1,7 @@
 ﻿#region
 
+using System.Collections.Generic;
+using ExpectedObjects;
 using NUnit.Framework;
 
 #endregion
@@ -21,7 +23,7 @@ namespace SibalaDojoTests
         public void to_be_done()
         {
             var result = _sibala.Result("winner:1 1 1 1  loser:1 1 1 1");
-            Assert.AreEqual("Tie.",result);
+            Assert.AreEqual("Tie.", result);
         }
 
         [Test]
@@ -42,13 +44,15 @@ namespace SibalaDojoTests
         {
             ResultShouldBe("lin wins. all the same kind:6.", "amy:2 3 4 5  lin:6 6 6 6");
         }
-        
+
         [Test]
         public void first_player_dice_1111()
         {
-            
-        //    ResultShouldBe("1111", "amy:1 1 1 1  lin:6 6 6 6");
-       _sibala.GetPlayer("amy:1 1 1 1") 
+            //    ResultShouldBe("1111", "amy:1 1 1 1  lin:6 6 6 6");
+            var player = _sibala.GetPlayer("amy:1 1 1 1");
+            Assert.AreEqual("amy", player.Name);
+            var expected = new List<int>() { 1, 1, 1, 1 };
+            expected.ToExpectedObject().ShouldEqual(player.Dices);
         }
 
         private void ResultShouldBe(string expected, string input)
