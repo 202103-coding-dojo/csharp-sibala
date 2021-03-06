@@ -42,6 +42,13 @@ namespace SibalaDojoTests
         {
             ResultShouldBe("lin wins. all the same kind:6.", "amy:2 3 4 5  lin:6 6 6 6");
         }
+        
+        [Test]
+        public void first_player_dice_1111()
+        {
+            
+            ResultShouldBe("1111", "amy:1 1 1 1  lin:6 6 6 6");
+        }
 
         private void ResultShouldBe(string expected, string input)
         {
