@@ -31,6 +31,7 @@ namespace SibalaDojoTests
             var secondPlayer = GetPlayer(input
                                              .Split(new string[] {"  "}, StringSplitOptions.RemoveEmptyEntries)[1]);
             var winner = firstPlayer.Dices.Max() > secondPlayer.Dices.Max() ? firstPlayer : secondPlayer;
+            firstPlayer.Dices.GroupBy(m => m).ToDictionary(s => s.Key, s => s.Count())
             if (secondPlayer.Dices.Distinct().Count() == 4)
             {
                 return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
