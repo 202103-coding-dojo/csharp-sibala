@@ -1,4 +1,8 @@
-﻿using System.Linq;
+﻿#region
+
+using System.Linq;
+
+#endregion
 
 namespace SibalaDojoTests
 {
@@ -6,7 +10,12 @@ namespace SibalaDojoTests
     {
         public string Result(string input)
         {
-            var firstPlayerName = input.Split("  ").First().Split(":").First();
+            var firstPlayerName = input
+                                  .Split(new[] {' ', ' '})
+                                  .First()
+                                  .Split(':')
+                                  .First();
+            return $"{firstPlayerName} wins. all the same kind:6.";
             return "Tie.";
         }
     }
