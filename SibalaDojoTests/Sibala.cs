@@ -26,28 +26,18 @@ namespace SibalaDojoTests
 
         public string Result(string input)
         {
-            var firstPlayer = GetPlayer(input
-                                            .Split(new string[] {"  "}, StringSplitOptions.RemoveEmptyEntries)[0]);
-            var secondPlayer = GetPlayer(input
-                                             .Split(new string[] {"  "}, StringSplitOptions.RemoveEmptyEntries)[1]);
-            var firstPlayerGroup = firstPlayer.Dices.GroupBy(m => m).ToDictionary(s => s.Key, s => s.Count());
+            var firstPlayer = GetPlayer(ParsePlayerData(input)[0]);
+            var secondPlayer = GetPlayer(ParsePlayerData(input)[1]);
 
-            // GetCategoryType(firstPlayerGroup, firstPlayer);
-            secondPlayer.GetCategoryType();
-            firstPlayer.GetCategoryType();
+            secondPlayer.SetCategoryType();
+            firstPlayer.SetCategoryType();
 
             var winner = firstPlayer.CategoryType > secondPlayer.CategoryType ? firstPlayer : secondPlayer;
 
-            // return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
-
-            if (firstPlayerGroup.Count() == 4)
+            if (IsSameCategory(firstPlayer, secondPlayer))
             {
-                return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
-            }
-
-            if (firstPlayer.CategoryType == secondPlayer.CategoryType)
-            {
-                if (firstPlayer.Dices.Max() > secondPlayer.Dices.Max())
+                winner = firstPlayer.Dices.Max() > secondPlayer.Dices.Max() ? firstPlayer : secondPlayer;
+                
                 {
                     winner = firstPlayer;
                     return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
@@ -64,6 +54,17 @@ namespace SibalaDojoTests
             return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
         }
 
+        private static bool IsSameCategory(Player firstPlayer, Player secondPlayer)
+        {
+            return firstPlayer.CategoryType == secondPlayer.CategoryType;
+        }
+
+        private static string[] ParsePlayerData(string input)
+        {
+            return input
+                .Split(new string[] {"  "}, StringSplitOptions.RemoveEmptyEntries);
+        }
+
         private string GetPlayerName(string input, int seq)
         {
             return input
@@ -78,7 +79,7 @@ namespace SibalaDojoTests
         public List<int> Dices { get; set; }
         public CategoryType CategoryType { get; set; }
 
-        public void GetCategoryType()
+        public void SetCategoryType()
         {
             Dictionary<int, int> secondPlayerGroup =
                 Dices.GroupBy(m => m).ToDictionary(s => s.Key, s => s.Count());
