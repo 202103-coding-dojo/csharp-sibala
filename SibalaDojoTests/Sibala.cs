@@ -31,17 +31,15 @@ namespace SibalaDojoTests
             var secondPlayer = GetPlayer(input
                                              .Split(new string[] {"  "}, StringSplitOptions.RemoveEmptyEntries)[1]);
             var firstPlayerGroup = firstPlayer.Dices.GroupBy(m => m).ToDictionary(s => s.Key, s => s.Count());
-            var secondPlayerGroup = secondPlayer.Dices.GroupBy(m => m).ToDictionary(s => s.Key, s => s.Count());
-            
-            
-            
+
             var winner = firstPlayer.Dices.Max() > secondPlayer.Dices.Max() ? firstPlayer : secondPlayer;
 
-            GetCategoryType(firstPlayerGroup, firstPlayer);
-            GetCategoryType(secondPlayerGroup, secondPlayer);
+            // GetCategoryType(firstPlayerGroup, firstPlayer);
+            secondPlayer.GetCategoryType();
+            firstPlayer.GetCategoryType();
 
-            return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
-            
+            // return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
+
             if (firstPlayerGroup.Count() == 4)
             {
                 return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
@@ -53,18 +51,6 @@ namespace SibalaDojoTests
             }
 
             return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
-        }
-
-        private static void GetCategoryType(Dictionary<int, int> secondPlayerGroup, Player secondPlayer)
-        {
-            if (secondPlayerGroup.Count() == 4)
-            {
-                secondPlayer.CategoryType = CategoryType.NoPoints;
-            }
-            else if (secondPlayerGroup.Count() == 1)
-            {
-                secondPlayer.CategoryType = CategoryType.AllTheSameKind;
-            }
         }
 
         private string GetPlayerName(string input, int seq)
@@ -80,6 +66,20 @@ namespace SibalaDojoTests
         public string Name { get; set; }
         public List<int> Dices { get; set; }
         public CategoryType CategoryType { get; set; }
+
+        public void GetCategoryType()
+        {
+            Dictionary<int, int> secondPlayerGroup =
+                Dices.GroupBy(m => m).ToDictionary(s => s.Key, s => s.Count());
+            if (secondPlayerGroup.Count() == 4)
+            {
+                CategoryType = CategoryType.NoPoints;
+            }
+            else if (secondPlayerGroup.Count() == 1)
+            {
+                CategoryType = CategoryType.AllTheSameKind;
+            }
+        }
     }
 
     public enum CategoryType
