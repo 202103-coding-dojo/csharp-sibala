@@ -54,6 +54,12 @@ namespace SibalaDojoTests
             expected.ToExpectedObject().ShouldEqual(player.Dices);
         }
 
+        [Test]
+        public void when_all_the_same_kind_and_both_equal()
+        {
+            ResultShouldBe("Tie.", "amy:6 6 6 6  lin:6 6 6 6");
+        }
+
         private void ResultShouldBe(string expected, string input)
         {
             Assert.AreEqual(expected, _sibala.Result(input));

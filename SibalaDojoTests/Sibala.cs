@@ -26,16 +26,15 @@ namespace SibalaDojoTests
 
         public string Result(string input)
         {
-            if (input == "winner:1 1 1 1  loser:1 1 1 1")
-            {
-                return "Tie.";
-            }
-
             var firstPlayer = GetPlayer(input
                                             .Split(new string[] {"  "}, StringSplitOptions.RemoveEmptyEntries)[0]);
             var secondPlayer = GetPlayer(input
                                              .Split(new string[] {"  "}, StringSplitOptions.RemoveEmptyEntries)[1]);
             var winner = firstPlayer.Dices.Max() > secondPlayer.Dices.Max() ? firstPlayer : secondPlayer;
+            if (firstPlayer.Dices.Max() == secondPlayer.Dices.Max())
+            {
+                return "Tie.";
+            }
 
             return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
         }
