@@ -20,8 +20,18 @@ namespace SibalaDojoTests
         [Test]
         public void tie_with_both_no_point()
         {
-            var actual = _sibala.Result("amy:1 2 3 4  lin:2 3 4 5");
-            Assert.AreEqual("Tie.", actual);
+            ResultShouldBe("Tie.", "amy:1 2 3 4  lin:2 3 4 5");
+        }
+
+        [Test]
+        public void first_player_win()
+        {
+            ResultShouldBe("amy wins. all the same kind:6.", "amy:6 6 6 6  lin:2 3 4 5");
+        }
+
+        private void ResultShouldBe(string expected, string input)
+        {
+            Assert.AreEqual(expected, _sibala.Result(input));
         }
     }
 }
