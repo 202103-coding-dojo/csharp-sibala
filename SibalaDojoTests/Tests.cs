@@ -18,10 +18,10 @@ namespace SibalaDojoTests
         }
 
         [Test]
-        [Ignore("Ignore first")]
-        public void tie_with_both_no_point()
+        public void to_be_done()
         {
-            ResultShouldBe("Tie.", "amy:1 2 3 4  lin:2 3 4 5");
+            var result = _sibala.Result("winner:1 1 1 1  loser:1 1 1 1");
+            Assert.AreEqual("Tie.",result);
         }
 
         [Test]
