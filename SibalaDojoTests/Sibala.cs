@@ -32,11 +32,11 @@ namespace SibalaDojoTests
                                              .Split(new string[] {"  "}, StringSplitOptions.RemoveEmptyEntries)[1]);
             var firstPlayerGroup = firstPlayer.Dices.GroupBy(m => m).ToDictionary(s => s.Key, s => s.Count());
 
-            var winner = firstPlayer.Dices.Max() > secondPlayer.Dices.Max() ? firstPlayer : secondPlayer;
-
             // GetCategoryType(firstPlayerGroup, firstPlayer);
             secondPlayer.GetCategoryType();
             firstPlayer.GetCategoryType();
+
+            var winner = firstPlayer.CategoryType > secondPlayer.CategoryType ? firstPlayer : secondPlayer;
 
             // return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
 
@@ -45,8 +45,19 @@ namespace SibalaDojoTests
                 return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
             }
 
-            if (firstPlayer.Dices.Max() == secondPlayer.Dices.Max())
+            if (firstPlayer.CategoryType == secondPlayer.CategoryType)
             {
+                if (firstPlayer.Dices.Max() > secondPlayer.Dices.Max())
+                {
+                    winner = firstPlayer;
+                    return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
+                }
+                else if (firstPlayer.Dices.Max() < secondPlayer.Dices.Max())
+                {
+                    winner = secondPlayer;
+                    return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
+                }
+
                 return "Tie.";
             }
 
