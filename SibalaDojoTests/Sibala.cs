@@ -1,7 +1,5 @@
 ﻿#region
 
-using System.Linq;
-
 #endregion
 
 namespace SibalaDojoTests
@@ -10,13 +8,17 @@ namespace SibalaDojoTests
     {
         public string Result(string input)
         {
-            var firstPlayerName = input
-                                  .Split(new[] {' ', ' '})
-                                  .First()
-                                  .Split(':')
-                                  .First();
+            var firstPlayerName = GetPlayerName(input, 0);
+            var secondPlayerName = GetPlayerName(input, 1);
             return $"{firstPlayerName} wins. all the same kind:6.";
             return "Tie.";
+        }
+
+        private string GetPlayerName(string input, int seq)
+        {
+            return input
+                   .Split(new[] {' ', ' '})[seq]
+                   .Split(':')[0];
         }
     }
 }
