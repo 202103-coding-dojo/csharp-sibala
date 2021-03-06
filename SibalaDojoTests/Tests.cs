@@ -27,10 +27,9 @@ namespace SibalaDojoTests
         }
 
         [Test]
-        [Ignore("")]
         public void first_player_win()
         {
-            ResultShouldBe("amy wins. all the same kind:6.", "amy:6 6 6 6  lin:2 3 4 5");
+            ResultShouldBe("amy wins. all the same kind:6.", "amy:6 6 6 6  lin:1 1 1 1");
         }
 
         [Test]
@@ -51,7 +50,7 @@ namespace SibalaDojoTests
             //    ResultShouldBe("1111", "amy:1 1 1 1  lin:6 6 6 6");
             var player = _sibala.GetPlayer("amy:1 1 1 1");
             Assert.AreEqual("amy", player.Name);
-            var expected = new List<int>() { 1, 1, 1, 1 };
+            var expected = new List<int>() {1, 1, 1, 1};
             expected.ToExpectedObject().ShouldEqual(player.Dices);
         }
 
