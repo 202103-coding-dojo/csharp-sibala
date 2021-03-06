@@ -31,10 +31,11 @@ namespace SibalaDojoTests
             var secondPlayer = GetPlayer(input
                                              .Split(new string[] {"  "}, StringSplitOptions.RemoveEmptyEntries)[1]);
             var winner = firstPlayer.Dices.Max() > secondPlayer.Dices.Max() ? firstPlayer : secondPlayer;
-            if (secondPlayer.Dices.Distinct().Count() ==4)
+            if (secondPlayer.Dices.Distinct().Count() == 4)
             {
-                secondPlayer.CategoryType
+                return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
             }
+
             if (firstPlayer.Dices.Max() == secondPlayer.Dices.Max())
             {
                 return "Tie.";
@@ -55,10 +56,12 @@ namespace SibalaDojoTests
     {
         public string Name { get; set; }
         public List<int> Dices { get; set; }
-        public  CategoryType CategoryType { get; set; }
+        public CategoryType CategoryType { get; set; }
     }
 
     public enum CategoryType
     {
+        NoPoints,
+        AllTheSameKind
     }
 }
