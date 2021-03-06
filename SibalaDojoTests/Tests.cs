@@ -25,6 +25,7 @@ namespace SibalaDojoTests
         }
 
         [Test]
+        [Ignore("")]
         public void first_player_win()
         {
             ResultShouldBe("amy wins. all the same kind:6.", "amy:6 6 6 6  lin:2 3 4 5");
@@ -32,6 +33,12 @@ namespace SibalaDojoTests
 
         [Test]
         public void second_player_win()
+        {
+            ResultShouldBe("lin wins. all the same kind:6.", "amy:2 3 4 5  lin:6 6 6 6");
+        }
+
+        [Test]
+        public void all_the_same_kind()
         {
             ResultShouldBe("lin wins. all the same kind:6.", "amy:2 3 4 5  lin:6 6 6 6");
         }
