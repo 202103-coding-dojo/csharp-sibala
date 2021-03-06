@@ -47,7 +47,8 @@ namespace SibalaDojoTests
         public void first_player_dice_1111()
         {
             
-            ResultShouldBe("1111", "amy:1 1 1 1  lin:6 6 6 6");
+        //    ResultShouldBe("1111", "amy:1 1 1 1  lin:6 6 6 6");
+       _sibala.GetPlayer("amy:1 1 1 1") 
         }
 
         private void ResultShouldBe(string expected, string input)

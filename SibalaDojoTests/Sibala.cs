@@ -5,6 +5,8 @@
 #region
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 #endregion
 
@@ -29,5 +31,21 @@ namespace SibalaDojoTests
                    .Split(new string[] {"  "}, StringSplitOptions.RemoveEmptyEntries)[seq]
                    .Split(':')[0];
         }
+
+        public Player GetPlayer(string input)
+        {
+            var strings = input.Split(':');
+            return new Player()
+                   {
+                       Name = strings[0],
+                       Dices = strings[1].Split(' ').Select(x => int.Parse(x)).ToList()
+                   };
+        }
+    }
+
+    public class Player
+    {
+        public string Name { get; set; }
+        public List<int> Dices { get; set; }
     }
 }
