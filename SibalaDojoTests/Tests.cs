@@ -72,14 +72,19 @@ namespace SibalaDojoTests
         {
             ResultShouldBe("lin wins. all the same kind:2.", "amy:6 6 6 3  lin:2 2 2 2");
         }
-        
+
         [Test]
         public void all_the_same_kind_and_no_point_secondPlayer_win()
         {
             ResultShouldBe("lin wins. all the same kind:2.", "amy:6 6 6 3  lin:2 2 2 2");
         }
 
-        
+        [Test]
+        public void normal_point_and_no_point_firstPlayer_win()
+        {
+            ResultShouldBe("amy wins. normal points:5.", "amy:5 5 2 3  lin:1 2 3 6");
+        }
+
         private void ResultShouldBe(string expected, string input)
         {
             Assert.AreEqual(expected, _sibala.Result(input));

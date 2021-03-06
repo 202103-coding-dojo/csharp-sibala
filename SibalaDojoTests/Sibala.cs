@@ -36,19 +36,12 @@ namespace SibalaDojoTests
 
             if (IsSameCategory(firstPlayer, secondPlayer))
             {
-                winner = firstPlayer.Dices.Max() > secondPlayer.Dices.Max() ? firstPlayer : secondPlayer;
-                
+                if (firstPlayer.Dices.Max() == secondPlayer.Dices.Max())
                 {
-                    winner = firstPlayer;
-                    return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
-                }
-                else if (firstPlayer.Dices.Max() < secondPlayer.Dices.Max())
-                {
-                    winner = secondPlayer;
-                    return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
+                    return "Tie.";
                 }
 
-                return "Tie.";
+                winner = firstPlayer.Dices.Max() > secondPlayer.Dices.Max() ? firstPlayer : secondPlayer;
             }
 
             return $"{winner.Name} wins. all the same kind:{winner.Dices.Max()}.";
@@ -91,12 +84,17 @@ namespace SibalaDojoTests
             {
                 CategoryType = CategoryType.AllTheSameKind;
             }
+            else if (secondPlayerGroup.Count() == 3)
+            {
+                CategoryType = CategoryType.NormalPoints;
+            }
         }
     }
 
     public enum CategoryType
     {
         NoPoints,
-        AllTheSameKind
+        AllTheSameKind,
+        NormalPoints
     }
 }
