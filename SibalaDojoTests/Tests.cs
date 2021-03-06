@@ -33,7 +33,7 @@ namespace SibalaDojoTests
         [Test]
         public void second_player_win()
         {
-            ResultShouldBe("lin wins. all the same kind:6.", "amy:2 3 4 5  lin:6 6 6 6 ");
+            ResultShouldBe("lin wins. all the same kind:6.", "amy:2 3 4 5  lin:6 6 6 6");
         }
 
         private void ResultShouldBe(string expected, string input)
